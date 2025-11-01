@@ -1,42 +1,50 @@
 # q-lms - Quick Learning Management System
 
-q-lms is a fast, flexible, and open-source Learning Management System designed to streamline educational experiences for personal and business use. With support for unlimited users and secure authentication, q-lms empowers educators, students, and organizations to manage learning efficiently.
+q-lms is a lightweight Learning Management System that runs on a classic **LAMP** stack.  
+The application is written in PHP, stores data in MySQL, and is designed so it can be
+deployed to traditional shared web hosting without the need for Node.js or any server
+processes beyond Apache + PHP.
 
 ## Features
 
-- **Secure Authentication**: Role-based logins for students, teachers, and administrators.
-- **Unlimited Users**: Scale without restrictions on user count.
-- **Customizable**: Adapt the platform to your specific needs.
-- **Robust Performance**: Built for speed and reliability under heavy use.
-- **Open Source**: Community-driven development with a free version for business use.
+- **Secure Authentication** – Role-based logins for parents/guardians and children.
+- **Course Management** – Create courses, enrol children, and track completion.
+- **Progress Tracking** – Token rewards and simple quiz support.
+- **SCORM Support** – Upload SCORM packages for self-paced learning.
+- **Open Source** – Free to use and customise for personal or business needs.
+
+## Requirements
+
+- PHP 7.4+ with the `mysqli` extension enabled
+- MySQL 5.7+ (or MariaDB equivalent)
+- Apache or another web server capable of running PHP
+- The ability to upload files and create databases (typical on shared hosting)
 
 ## Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/q-lms/q-lms.git
-   ```
+1. **Upload the application files**
+   - Copy the contents of the `lms` directory (and the root `index.php` file) to your web root.  
+     On shared hosting this is typically `public_html/` or `www/`.
 
-2. **Navigate to the Project Directory**:
-   ```bash
-   cd q-lms
-   ```
+2. **Create the database schema**
+   - Create a new MySQL database from your hosting control panel.
+   - Import the SQL definition found in [`lms_schema.sql`](./lms_schema.sql) using phpMyAdmin or the MySQL command line.
 
-3. **Install Dependencies**:
-   Ensure you have [Node.js](https://nodejs.org/) (or other relevant dependencies) installed, then run:
-   ```bash
-   npm install
-   ```
+3. **Configure the database connection**
+   - Edit [`lms/config.php`](./lms/config.php) with your database hostname, username, password, and database name.
 
-4. **Configure the Environment**:
-   Copy the `.env.example` file to `.env` and update the necessary configuration settings (e.g., database credentials).
+4. **Visit the site**
+   - Navigate to your domain in a browser.  You should see the LMS welcome page.
 
-5. **Run the Application**:
-   ```bash
-   npm start
-   ```
+## Local Development
 
-   Access q-lms at `http://localhost:3000` (or your configured port).
+You can also run the project locally using any PHP-enabled web server:
+
+```bash
+php -S localhost:8000 -t lms
+```
+
+Then open <http://localhost:8000> in your browser.  The included root `index.php` will redirect requests to the `lms/` directory.
 
 ## Licensing
 
@@ -44,7 +52,7 @@ q-lms is a fast, flexible, and open-source Learning Management System designed t
 - **Commercial Licenses**:
   - **Business License**: One-time permanent license for commercial use.
   - **Enterprise License**: Own the source code and create marketable forks.
-  
+
 Visit [q-lms.com](http://q-lms.com) for commercial licensing details.
 
 ## Contributing
@@ -59,14 +67,7 @@ We welcome contributions to q-lms! To get started:
 
 Please read our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting.
 
-## Community
+## Community & Support
 
-Join the q-lms community at [q-lms.org](http://q-lms.org) to collaborate, share ideas, and get support.
-
-## Support
-
+Join the q-lms community at [q-lms.org](http://q-lms.org) to collaborate, share ideas, and get support.  
 For issues, feature requests, or questions, please open an issue on this repository or contact us via [q-lms.com](http://q-lms.com).
-
-## Acknowledgments
-
-Thank you to all contributors and the open-source community for making q-lms possible!
